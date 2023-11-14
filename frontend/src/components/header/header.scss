@@ -1,0 +1,41 @@
+@import "../../main.scss";
+
+.main {
+    flex: 1;
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 20px;
+
+        &__logo {
+            display: flex;
+            align-items: center;
+
+            &__image {
+                max-width: 100%;
+                width: 200px;
+            }
+        }
+
+        &__item {
+            font-weight: bold;
+            color: $color-primary;
+            text-decoration: none;
+            margin-right: 0.5rem;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.sr-only {
+    @include sr-only;
+}
+
+.fa {
+    margin-right: 4px;
+}

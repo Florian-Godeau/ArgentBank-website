@@ -1,0 +1,87 @@
+@import "../../main.scss";
+
+.banner {
+    background-image: url('../../assets/bank-tree.jpeg');
+    background-position: 0 -50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    position: relative;
+
+    @media screen and (min-width: 920px) {
+        height: 400px;
+        background-position: 0% 33%;
+    }
+
+    &__content {
+        position: relative;
+        top: 2rem;
+        width: 200px;
+        background: $color-backgroundLight;
+        padding: 2rem;
+        text-align: left;
+        margin: 0 auto;
+
+        @media screen and (min-width: 920px) {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 300px;
+            margin: 2rem;
+        }
+
+        &__title {
+            @include sr-only;
+        }
+
+        &__subtitle {
+            font-weight: bold;
+            font-size: 1rem;
+            margin: 0;
+
+            @media screen and (min-width: 920px) {
+                font-size: 1.5rem;
+            }
+        }
+
+        &__text {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+
+            @media screen and (min-width: 920px) {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 920px) {
+        flex-direction: row;
+    }
+
+    &__title {
+        @include sr-only;
+    }
+
+    &__item {
+        flex: 1;
+        padding: 2.5rem;
+
+        &__icon {
+            width: 100px;
+            border: 10px solid $color-tertiary;
+            border-radius: 50%;
+            padding: 1rem;
+        }
+
+        &__title {
+            color: $color-title;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
