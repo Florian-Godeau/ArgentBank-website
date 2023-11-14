@@ -1,0 +1,55 @@
+@import "../../main.scss";
+
+.bg-dark {
+    background-color: $color-backgroundDark;
+   min-height: calc(100vh - 143px);
+   padding: 1px 0;
+ }
+
+.login {
+    box-sizing: border-box;
+    background-color: $color-backgroundLight;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+
+    &__form {
+
+        &__inputWrapper {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 1rem;
+
+            & label {
+                font-weight: bold;
+            }
+
+            & input {
+                padding: 5px;
+                font-size: 1.2rem;
+            }
+        }
+
+        &__inputRemember {
+            display: flex;
+
+            & label {
+                margin-left: 0.25rem;
+            }
+        }
+
+        &__button {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            border-color: $color-tertiary;
+            background-color: $color-tertiary;
+            color: $color-backgroundLight;
+        }
+    }
+}
