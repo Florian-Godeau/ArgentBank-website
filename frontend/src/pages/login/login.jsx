@@ -5,7 +5,7 @@ import Footer from "../../components/footer/footer";
 
 export default function Login() {
     return (
-        <div>
+        <>
             <Header />
             <main className="main bg-dark">
                 <section className="login">
@@ -29,6 +29,6 @@ export default function Login() {
                 </section>
             </main>
             <Footer />
-        </div>
+        </>
     )
 }

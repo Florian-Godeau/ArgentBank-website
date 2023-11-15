@@ -1,10 +1,7 @@
-@import "../../main.scss";
+@import "../../utils/variable";
+@import "../../utils/mixin";
 
-.bg-dark {
-    background-color: $color-backgroundDark;
-   min-height: calc(100vh - 143px);
-   padding: 1px 0;
- }
+
 
 .login {
     box-sizing: border-box;
