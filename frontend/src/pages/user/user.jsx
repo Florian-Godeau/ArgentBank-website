@@ -1,15 +1,51 @@
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setGetProfile } from "../../redux/slices/userProfileSlice";
 import "./user.scss";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
+import UsernameForm from "../../components/UsernameForm/UsernameForm";
 
 export default function User() {
+    const dispatch = useDispatch();
+    const token = useSelector((state) => state.auth.token);
+    const userProfile = useSelector((state) => state.userProfile);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            if (token) {
+                try {
+                    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`,
+                        }
+                    });
+        
+                    if (response.ok) {
+                        const profileData = await response.json();
+                        dispatch(setGetProfile(profileData));
+                    } else {
+                        console.error('Failed to fetch user profile:', response.status);
+                    }
+                } catch (error) {
+                    console.error('Error fetching user profile:', error);
+                }
+            }
+        };
+
+        fetchUserProfile();
+    }, [token, dispatch]);
+
     return (
         <>
             <Header />
             <main className="main bg-dark">
                 <div className="user">
-                    <h1 className="user__title">Welcome back<br />Tony Jarvis!</h1>
-                    <button className="user__editButton">Edit Name</button>
+                    <h1 className="user__title">Welcome back<br />{`${userProfile.firstName} ${userProfile.lastName}`}</h1>
+                    <button className="user__editButton" onClick={() => setIsModalOpen(true)}>Edit Username</button>
                 </div>
                 <h2 className="sr-only">Accounts</h2>
                 <section className="userAccount">
@@ -50,6 +86,7 @@ export default function User() {
                 </section>
             </main>
             <Footer />
+            {isModalOpen && <UsernameForm closeModal={() => setIsModalOpen(false)} />}
         </>
-    )
+    );
 }

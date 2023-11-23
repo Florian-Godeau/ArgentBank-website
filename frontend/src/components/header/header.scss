@@ -1,35 +1,51 @@
 @import "../../utils/variable";
 @import "../../utils/mixin";
 
-.main {
+.main-nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 20px;
+}
 
-    &__nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px 20px;
+.main-nav a {
+	font-weight: bold;
+	color: #2c3e50;
+}
 
-        &__logo {
-            display: flex;
-            align-items: center;
+.main-nav-button {
+	text-decoration: none;
+ 	margin-right: 0.5rem;
+	background: none;
+	border: none;
+	font-size: initial;
+	font-weight: bold;
+	color: #2c3e50;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	cursor: pointer;
+}
 
-            &__image {
-                max-width: 100%;
-                width: 200px;
-            }
-        }
+.main-nav-button:hover {
+	text-decoration: underline;
+}
 
-        &__item {
-            font-weight: bold;
-            color: $color-primary;
-            text-decoration: none;
-            margin-right: 0.5rem;
+.main-nav-item {
+ 	text-decoration: none;
+ 	margin-right: 0.5rem;
+}
 
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
+.main-nav-item:hover{
+ 	text-decoration: underline;
+}
+
+.main-nav-logo {
+	display: flex;
+	align-items: center;
+}
+
+.main-nav-logo-image {
+	max-width: 100%;
+	width: 200px;
 }
 
 .sr-only {
