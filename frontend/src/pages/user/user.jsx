@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom'; 
 import { setGetProfile } from "../../redux/slices/userProfileSlice";
 import "./user.scss";
 import Header from "../../components/header/header";
@@ -8,13 +9,16 @@ import UsernameForm from "../../components/UsernameForm/UsernameForm";
 
 export default function User() {
     const dispatch = useDispatch();
+    const navigate = useNavigate(); 
     const token = useSelector((state) => state.auth.token);
     const userProfile = useSelector((state) => state.userProfile);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        const fetchUserProfile = async () => {
-            if (token) {
+        if (!token) {
+            navigate('/login'); // Redirige vers la page de connexion si aucun token n'est trouvé
+        } else {
+            const fetchUserProfile = async () => {
                 try {
                     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
                         method: "POST",
@@ -23,7 +27,7 @@ export default function User() {
                             "Authorization": `Bearer ${token}`,
                         }
                     });
-        
+            
                     if (response.ok) {
                         const profileData = await response.json();
                         dispatch(setGetProfile(profileData));
@@ -33,11 +37,11 @@ export default function User() {
                 } catch (error) {
                     console.error('Error fetching user profile:', error);
                 }
-            }
-        };
+            };
 
-        fetchUserProfile();
-    }, [token, dispatch]);
+            fetchUserProfile();
+        }
+    }, [token, dispatch, navigate]);
 
     return (
         <>
